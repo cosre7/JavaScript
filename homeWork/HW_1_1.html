@@ -40,12 +40,20 @@
     <form>
         <fieldset>
             <label for="start">첫 단 : </label> 
-            <input id="start"><br/>
+            <input id="start" onKeyup = "this.value = this.value.replace(/[^0-9]/g,'');"/><br/>
             <label>마지막 단 : </label>
-            <input id="end"><br/>
+            <input id="end" onKeyup = "this.value = this.value.replace(/[^0-9]/g,'');"/><br/>
             <label>마지막 곱할 수 : </label>
-            <input id="last"><br/>
+            <input id="last" onKeyup = "this.value = this.value.replace(/[^0-9]/g,'');"/><br/>
             <input type = "button" value = "계산하기" onclick="gugudan()">
+            <!-- 
+                * 숫자만 입력받도록 해주는 정규식 코드 
+                onKeyup = "this.value = this.value.replace(/[^0-9]/g,'');" 
+                 - ^ 뒤에 있는 0-9까지의 숫자만 입력 가능하게 하는 코드
+                * '-' 특수문자까지 입력받도록 해주는 정규식 코드
+                onKeyup = "this.value = this.value.replace(/[^-0-9]/g,'');"
+                 - ^ 뒤에 - 를 붙여서 표현할 수 있다.
+            -->
         </fieldset>
     </form>
 </body>
@@ -54,12 +62,12 @@
     *수정하고 싶은 사항*
     1. 테이블 형태 외곽 - 굵은 선
     2. 가로선은 ~단 밑에만
-    3. 숫자만 입력 가능하도록 하기
 
     *정리할 내용*
     1. 왜 Number를 사용하는지?
     2. table 만들 때 태그들 <tr>, <th>, <td>
     3. input 태그 사용법
+    4. 숫자만 입력할 수 있도록 해주는 정규식 코드
 
 -->
 </html>
