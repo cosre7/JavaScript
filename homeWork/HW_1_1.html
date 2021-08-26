@@ -5,34 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>구구단 만들기_1</title>
-</head>
-<body>
-    <script>
-        var start = Number(prompt("첫 번째 단은?"));
-        var end = Number(prompt("마지막 단은?"));
-        var result = 0;
-        if (start > end) {
-            document.write("첫 번째 단이 더 작아야 합니다.");
-        } else {
-            var last_multiply_number = prompt("마지막 곱할 수는?");
-            document.write('<table border="1">');
-            document.write("<tr>");
-            for(i = start; i <= end; i++) {
-                document.write("<th>" + i + "단 </th>");
-            }
-            document.write("</tr>");   
-                
-            for(j = 1; j <= last_multiply_number; j++) {
+    
+    <script type = "text/javascript">
+        function gugudan() {
+            var start = Number(document.getElementById("start").value);
+            var end = Number(document.getElementById("end").value);
+            var last_multiply_number = Number(document.getElementById("last").value);
+            var result;
+            if (start > end) {
+            document.write("첫 번째 단이 마지막 단보다 더 작아야 합니다.");
+            } else {
+                document.write('<table border="1">');
                 document.write("<tr>");
                 for(i = start; i <= end; i++) {
-                    result = i * j;
-                    document.write("<td>" + i + "*" + j + "=" + result + "</td>");
+                    document.write("<th>" + i + "단 </th>");
                 }
-                document.write("</tr>");
+                document.write("</tr>");   
+                    
+                for(j = 1; j <= last_multiply_number; j++) {
+                    document.write("<tr>");
+                    for(i = start; i <= end; i++) {
+                        result = i * j;
+                        document.write("<td>" + i + "*" + j + "=" + result + "</td>");
+                    }
+                    document.write("</tr>");
+                }
+                document.write("</table>");
             }
-            document.write("</table>");
         }
+
     </script>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <label for="start">첫 단 : </label> 
+            <input id="start"><br/>
+            <label>마지막 단 : </label>
+            <input id="end"><br/>
+            <label>마지막 곱할 수 : </label>
+            <input id="last"><br/>
+            <input type = "button" value = "계산하기" onclick="gugudan()">
+        </fieldset>
+    </form>
 </body>
 
 <!-- 
@@ -40,11 +55,11 @@
     1. 테이블 형태 외곽 - 굵은 선
     2. 가로선은 ~단 밑에만
     3. 숫자만 입력 가능하도록 하기
-    4. input 태그 사용해서 짜보기
 
     *정리할 내용*
     1. 왜 Number를 사용하는지?
     2. table 만들 때 태그들 <tr>, <th>, <td>
+    3. input 태그 사용법
 
 -->
 </html>
