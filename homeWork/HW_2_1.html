@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function count() {
+            var char = document.getElementById("alpha").value;
+            var cnt = char.match(/a/g).length;
+            document.write(cnt);
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label for="alpha">문자 카운터</label><br>
+        <textarea id="alpha" placeholder="영어와 숫자만 입력가능합니다." rows="4" cols = "50" onKeyup = "this.value = this.value.replace(/[^a-zA-Z0-9\s]/g,'');"></textarea><br>
+        <input type="submit" value="확인해보기" onclick="count()">
+    </form>
+</body>
+
+<!--
+    *수정할 내용*
+    1.  total Result
+        - a-z, A-Z, 0-9 로 테이블을 나누어서 각 문자의 개수가 몇개인지 카운트
+    2. 모음 모음
+        - a, e, i, o, u , A, E, I, O, U 문자들만 개수가 몇개인지 카운트
+    3. 최고 빈도 Top 10
+        - 가장 많이 카운트된 문자들로 sort 후 10개까지 자르기
+
+    *정리할 내용*
+    1. textarea 에서 기본 내용을 적어두는 방법
+        - placeholder 속성을 이용한다.
+        - 반드시 <textarea>태그와 </textarea> 태그를 한 줄에 적어야 적용된다.
+    2. 영어와 숫자만 입력되게 하는 방법
+        onKeyup = "this.value = this.value.replace(/[^a-zA-Z0-9]/g,'');"
+        ,'' 가 없으면 입력 시 undefined가 나온다.
+    3. 영어, 숫자, 공백만 입력되게 하는 방법
+        onKeyup = "this.value = this.value.replace(/[^a-zA-Z0-9\s]/g,'');"
+    4. textarea 태그에 입력받은 값 js에서 사용하는 방법
+
+-->
+</html>
