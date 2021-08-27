@@ -7,9 +7,9 @@
     <title>Document</title>
     <script>
         function count() {
-            var alpha = document.getElementById("alpha").value; // 입력한 값 alpha 변수에 저장
-            var results = alpha.match(/a/g);
-            document.write("a : " + results.length + "개");
+            for(i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++) {
+                document.write(String.fromCharCode(i));
+            }
         }
     </script>
 </head>
