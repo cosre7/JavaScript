@@ -19,25 +19,50 @@
             let splitedAlpha = alpha.split('');
             let alphaObj = {};
             let alphaCount = [];
+            document.write("<table border = 1>");
             for(j = 'a'.charCodeAt(0); j <= 'z'.charCodeAt(0); j++) {
                 let number_lowerCase = 0;
-                let number_upperCase = 0;
                 for(let i = 0; i < splitedAlpha.length; i++) {
                     if (splitedAlpha[i] == String.fromCharCode(j)) {
                         number_lowerCase++;
-                    } else if (splitedAlpha[i] == String.fromCharCode(j - 32)) {
+                    } 
+                }
+                alphaObj = {name: String.fromCharCode(j), number: number_lowerCase};
+                alphaCount.push(alphaObj);
+                document.write("<tr> <td>" + alphaObj.name + "</td> <td>" + alphaObj.number + "개 </td> </tr>");
+
+            }
+            document.write("</table>");
+            
+            document.write("<table border = 1>");
+            for(j = 'A'.charCodeAt(0); j <= 'Z'.charCodeAt(0); j++) {
+                let number_upperCase = 0;
+                for(let i = 0; i < splitedAlpha.length; i++) {
+                    if (splitedAlpha[i] == String.fromCharCode(j)) {
                         number_upperCase++;
                     } 
 
                 }
-                alphaObj = {name: String.fromCharCode(j), number: number_lowerCase};
+                alphaObj = {name: String.fromCharCode(j), number: number_upperCase};
                 alphaCount.push(alphaObj);
-                document.write(alphaObj.name + ": " + alphaObj.number + "개 <br>");
-
-                alphaObj = {name: String.fromCharCode(j - 32), number: number_upperCase};
-                alphaCount.push(alphaObj);
-                document.write(alphaObj.name + ": " + alphaObj.number + "개 <br>");
+                document.write("<tr> <td>" + alphaObj.name + "</td> <td>" + alphaObj.number + "개 </td> </tr>");
             }
+            document.write("</table>");
+
+            document.write("<table border = 1>");
+            for(j = '0'.charCodeAt(0); j <= '9'.charCodeAt(0); j++) {
+                let number_number = 0;
+                for(let i = 0; i < splitedAlpha.length; i++) {
+                    if (splitedAlpha[i] == String.fromCharCode(j)) {
+                        number_number++;
+                    } 
+
+                }
+                alphaObj = {name: String.fromCharCode(j), number: number_number};
+                alphaCount.push(alphaObj);
+                document.write("<tr> <td>" + alphaObj.name + "</td> <td>" + alphaObj.number + "개 </td> </tr>");
+            }
+            document.write("</table>");
             
         }
     </script>
@@ -46,7 +71,9 @@
 <!--
     *수정할 내용*
     1.  total Result
-        - a-z, A-Z, 0-9 로 테이블을 나누어서 각 문자의 개수가 몇개인지 카운트
+        - a-z, A-Z, 0-9 로 테이블을 나누어서 각 문자의 개수가 몇개인지 카운트 (o)
+        - 테이블 가로정렬
+        - a~g, h~n 식으로 나눠서 테이블 만들어보기
     2. 모음 모음
         - a, e, i, o, u , A, E, I, O, U 문자들만 개수가 몇개인지 카운트
     3. 최고 빈도 Top 10
