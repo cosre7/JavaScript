@@ -5,23 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function count() {
-            var alpha = document.getElementById("alpha").value; // 입력한 값 alpha 변수에 저장
-            const num = Array(26).fill(0);
-            const a = 'a'.charCodeAt(0);
-            const z = 'z'.charCodeAt(0);
-            for(i = a; i <= z; i++) {
-                document.write(String.fromCharCode(i) + "<br>");
-            
-            }
-            
-            for(const c of alpha) {
-                num[c.charCodeAt(0) - a]++;
-            }
-            document.write(num.join("개 <br>") + "개");
-        }
-    </script>
 </head>
 <body>
     <form>
@@ -29,6 +12,35 @@
         <textarea id="alpha" placeholder="영어와 숫자만 입력가능합니다." rows="4" cols = "50" onKeyup = "this.value = this.value.replace(/[^a-zA-Z0-9\s]/g,'');"></textarea><br>
         <input type="submit" value="확인해보기" onclick="count()">
     </form>
+
+    <script>
+        function count() {
+            let alpha = document.getElementById("alpha").value; // 입력한 값 alpha 변수에 저장
+            let splitedAlpha = alpha.split('');
+            let alphaObj = {};
+            let alphaCount = [];
+            for(j = 'a'.charCodeAt(0); j <= 'z'.charCodeAt(0); j++) {
+                let number_lowerCase = 0;
+                let number_upperCase = 0;
+                for(let i = 0; i < splitedAlpha.length; i++) {
+                    if (splitedAlpha[i] == String.fromCharCode(j)) {
+                        number_lowerCase++;
+                    } else if (splitedAlpha[i] == String.fromCharCode(j - 32)) {
+                        number_upperCase++;
+                    } 
+
+                }
+                alphaObj = {name: String.fromCharCode(j), number: number_lowerCase};
+                alphaCount.push(alphaObj);
+                document.write(alphaObj.name + ": " + alphaObj.number + "개 <br>");
+
+                alphaObj = {name: String.fromCharCode(j - 32), number: number_upperCase};
+                alphaCount.push(alphaObj);
+                document.write(alphaObj.name + ": " + alphaObj.number + "개 <br>");
+            }
+            
+        }
+    </script>
 </body>
 
 <!--
