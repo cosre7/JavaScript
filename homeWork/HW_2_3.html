@@ -79,9 +79,11 @@
         - 테이블 가로정렬
         - a~g, h~n 식으로 나눠서 테이블 만들어보기
     2. 모음 모음
-        - a, e, i, o, u , A, E, I, O, U 문자들만 개수가 몇개인지 카운트
+        - a, e, i, o, u , A, E, I, O, U 문자들만 개수가 몇개인지 카운트 (o)
+        - 테이블 꾸미기
     3. 최고 빈도 Top 10
-        - 가장 많이 카운트된 문자들로 sort 후 10개까지 자르기
+        - 가장 많이 카운트된 문자들로 sort 후 10개까지 자르기 (o)
+        - 테이블 꾸미기
 
     *정리할 내용*
     1. textarea 에서 기본 내용을 적어두는 방법
@@ -127,6 +129,13 @@
         for(var cnt in alphaObj) {
             document.write(cnt + "<br>"); // name number name number
         }
+    
+    11. 배열 테이블로 분리시키기
+        document.write("<table border = 1>");
+        for(i = 0; i < 10; i++) {
+            document.write("<tr> <td>" + (i+1) + "위 </td> <td>" + alphaCount[i].join("</td><td>") + "</td> </tr>");
+        }
+        document.write("</table>")
 
 -->
 </html>
