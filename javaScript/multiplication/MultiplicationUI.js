@@ -12,8 +12,7 @@ MultiplicationUI.printMultiplicationTable = function(table,startRowNumber, endRo
     for (i = startRowNumber; i <= endRowNumber; i++) {
         for (j = startRowNumber; j <= i; j++) {
             var color = (j % 2 == 1) ? "<font color=blue>" : "<font color=orange>";
-            document.write("<td>" + color + j + "단 <br/>");
-            document.write(color + resultTable[j + "단"].join("") + "</td>")
+            document.write("<td>" + color + j + "단 <br/>" + resultTable[j + "단"].join("") + "</td>")
         }
         document.write("</tr>");
     }
