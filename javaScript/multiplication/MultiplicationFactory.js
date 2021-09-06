@@ -1,4 +1,5 @@
 var MultiplicationFactory = {};
+MultiplicationFactory.multiplyTable = [];
 
 /*
 주석 : 
@@ -17,16 +18,14 @@ var MultiplicationFactory = {};
 m (endRowNumber)
 */
 
-var multiplyTable = [];
-MultiplicationFactory.createMultiplyTable = function( startColumNumber , endColumNumber , startRowNumber , endRowNumber ) {
+MultiplicationFactory.createMultiplyTable = function( startRowNumber , endRowNumber, startColumNumber , endColumNumber) {
     
     var count = startRowNumber;
     while (count <= endRowNumber) {
-        multiplyTable[count + "단"] = MultiplicationFactory.createMultiplyRow(count, startColumNumber, endColumNumber);
+        this.multiplyTable[count] = MultiplicationFactory.createMultiplyRow(count, startColumNumber, endColumNumber);
         ++count;
     }
-    document.write(multiplyTable);
-    return multiplyTable;
+    return this.multiplyTable;
 }
 
 /*
@@ -38,7 +37,7 @@ MultiplicationFactory.createMultiplyRow = function( rowNumber , startColumNumber
 
     var multiplyRow = [];
     while(startColumNumber <= endColumNumber) {
-        multiplyRow.push(MultiplicationFactory.createMultiplicationOperation(rowNumber, startColumNumber));
+        multiplyRow[startColumNumber] = MultiplicationFactory.createMultiplicationOperation(rowNumber, startColumNumber);
         ++startColumNumber;
     }
     return multiplyRow;
@@ -52,22 +51,15 @@ MultiplicationFactory.createMultiplyRow = function( rowNumber , startColumNumber
 */
 MultiplicationFactory.createMultiplicationOperation = function( rowNumber , columNumber ) {
     var result = rowNumber * columNumber;
-    var operation = rowNumber + " * " + columNumber + " = " + result + "<br/>";
-    rowNumber % 2 == 1 ? operation.fontcolor("blue") : operation.fontcolor("orange");  
-    // var multiplicationOperation = {};
-    // multiplicationOperation = {operation, color};
-    // return multiplicationOperation
+    var operation = [];
+    operation.push(rowNumber + " * " + columNumber + " = " + result);
     return operation;
 }
 
 /*
-    이름 : findMultiplyRow
-    역할 : multiplicationTable에서 한 단을 찾는다.
+    이름 : findMultiplyItem
+    역할 : multiplicationTable에서 한 아이템(곱셈식)을 찾는다.
 */
-MultiplicationFactory.findMultiplyRow = function( rowNumber ) {
-    for(key in multiplyTable) {
-        if(key == (rowNumber + "단")) {
-            return [rowNumber + "단", multiplyTable[rowNumber + "단"]]
-        }
-    }
+MultiplicationFactory.findMultiplyItem = function(row, col) {
+    return this.multiplyTable[row][col];
 }
