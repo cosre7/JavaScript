@@ -1,9 +1,9 @@
 var MultiplicationFactory = {};
-MultiplicationFactory.multiplyTable = [];
+MultiplicationFactory.multiplicationTable = [];
 
 /*
 주석 : 
-이름 : createMultiplyTable
+이름 : createMultiplicationTable
 역할 : 곱셈 테이블 (예를 들어 구구단 같은 표를 만든다.) 
 재료 : 
                                 0 (startColumNumber)     1 2 3 4 .............................. n (endColumNumber)
@@ -18,29 +18,28 @@ MultiplicationFactory.multiplyTable = [];
 m (endRowNumber)
 */
 
-MultiplicationFactory.createMultiplyTable = function( startRowNumber , endRowNumber, startColumNumber , endColumNumber) {
+MultiplicationFactory.createMultiplicationTable = function( startRowNumber , endRowNumber, startColumNumber , endColumNumber) {
     
-    var count = startRowNumber;
-    while (count <= endRowNumber) {
-        this.multiplyTable[count] = MultiplicationFactory.createMultiplyRow(count, startColumNumber, endColumNumber);
-        ++count;
+    while (startRowNumber <= endRowNumber) {
+        this.multiplicationTable[startRowNumber] = MultiplicationFactory.createMultiplicationRow(count, startColumNumber, endColumNumber);
+        ++startRowNumber;
     }
-    return this.multiplyTable;
+    return this.multiplicationTable;
 }
 
 /*
 주석 : 
-이름 : createMultiplyRow
+이름 : createMultiplicationRow
 역할 : 곱셈 테이블의 행을 만든다. (구구단에 한단에 해당 된다.)
 */
-MultiplicationFactory.createMultiplyRow = function( rowNumber , startColumNumber , endColumNumber) {
+MultiplicationFactory.createMultiplicationRow = function( rowNumber , startColumNumber , endColumNumber) {
 
-    var multiplyRow = [];
+    var multiplicationRow = [];
     while(startColumNumber <= endColumNumber) {
-        multiplyRow[startColumNumber] = MultiplicationFactory.createMultiplicationOperation(rowNumber, startColumNumber);
+        multiplicationRow[startColumNumber] = MultiplicationFactory.createMultiplicationOperation(rowNumber, startColumNumber);
         ++startColumNumber;
     }
-    return multiplyRow;
+    return multiplicationRow;
 
 }
 
@@ -49,17 +48,17 @@ MultiplicationFactory.createMultiplyRow = function( rowNumber , startColumNumber
 이름 : createMultiplicationOperation
 역할 : 곱셈 연산식을 만든다.
 */
-MultiplicationFactory.createMultiplicationOperation = function( rowNumber , columNumber ) {
-    var result = rowNumber * columNumber;
+MultiplicationFactory.createMultiplicationOperation = function( rowNumber , columnNumber ) {
+    var result = rowNumber * columnNumber;
     var operation = [];
-    operation.push(rowNumber + " * " + columNumber + " = " + result);
+    operation.push(rowNumber + " * " + columnNumber + " = " + result);
     return operation;
 }
 
 /*
-    이름 : findMultiplyItem
+    이름 : findMultiplicationItem
     역할 : multiplicationTable에서 한 아이템(곱셈식)을 찾는다.
 */
-MultiplicationFactory.findMultiplyItem = function(row, col) {
-    return this.multiplyTable[row][col];
+MultiplicationFactory.findMultiplicationItem = function(row, col) {
+    return this.multiplicationTable[row][col];
 }
