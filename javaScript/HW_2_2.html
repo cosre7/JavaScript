@@ -10,36 +10,36 @@
     <form>
         <label for="alpha">문자 카운터(모음)</label><br>
         <textarea id="alpha" placeholder="영어와 숫자만 입력가능합니다." rows="4" cols = "50" onKeyup = "this.value = this.value.replace(/[^a-zA-Z0-9\s]/g,'');"></textarea><br>
-        <input type="submit" value="확인해보기" onclick="count()">
+        <input type="submit" value="확인해보기" onclick="countVowel()">
     </form>
 
     <script>
-        function count() {
-            let alpha = document.getElementById("alpha").value; // 입력한 값 alpha 변수에 저장
-            let splitedAlpha = alpha.split('');
-            let alphaObj = {};
-            let cnt = [];
-            const alphaCount = ['a', 'e', 'i', 'o', 'u'];
-                
-            document.write("<table border = 1>");
-            for(i = 0; i < alphaCount.length; i++) {
-                let number_vowels = 0;
-                for(j = 0; j < splitedAlpha.length; j++) {
-                    if(alphaCount[i] == splitedAlpha[j].toLowerCase()) {
+        function countVowel() {
+            var alpha = document.getElementById("alpha").value;
+            var splitedAlpha = alpha.split('');
+            var alphaObj = {};
+            var alphaCount = ['a', 'e', 'i', 'o', 'u'];
+            
+            // 모음 개수 출력
+            document.write('<table border = "1">');
+            for (i = 0; i < alphaCount.length; i++) {
+                var number_vowels = 0;
+                for (j = 0; j < splitedAlpha.length; j++) {
+                    if (alphaCount[i] == splitedAlpha[j].toLowerCase()) {
                         number_vowels++;
-                        
                     }
                 }
                 alphaObj = {name: alphaCount[i], number: number_vowels};
-                cnt.push(alphaObj);
-                document.write("<tr> <td>" + alphaObj.name + "</td> <td>" + alphaObj.number + "개 </td> </tr>");
+                document.write('<tr><td>' + alphaObj.name + '</td><td>' + alphaObj.number + '개 </td></tr>');
+                
             }
-            document.write("</table>");
+            document.write('</table>');
         }
     </script>
 </body>
 
 <!--
+    모음 개수 측정 프로그램
     *수정할 내용*
     1.  total Result
         - a-z, A-Z, 0-9 로 테이블을 나누어서 각 문자의 개수가 몇개인지 카운트 (o)
@@ -62,11 +62,13 @@
     4. textarea 태그에 입력받은 값 js에서 사용하는 방법
     5. charCodeAt(0) -> 0번째 인덱스부터 문자의 ASCII 코드 번호를 알아내는 메서드
     6. fromCharCode() -> 해당 ASCII 코드에 해당하는 문자를 반환한다. 
-    7. // a~z 출력하는 반복문
-            // for(i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++) {
-            //     document.write(i + "<br>"); // 97 98 99 ~ 
-            //     document.write(String.fromCharCode(i) + "<br>"); // a b c ~
-            // }
+    7. a~z 출력하는 반복문
+        for(i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++) {
+            document.write(i + "<br>"); // 97 98 99 ~ 
+            document.write(String.fromCharCode(i) + "<br>"); // a b c ~
+        }
+    8. 객체에 배열 저장, 객체 사용법
+
 
 -->
 </html>
