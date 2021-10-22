@@ -8,6 +8,7 @@
 </head>
 <body>
     <form>
+        <input type="text">
         <label for="alpha">문자 카운터</label><br>
         <textarea id="alpha" placeholder="영어와 숫자만 입력가능합니다." rows="4" cols = "50" onKeyup = "this.value = this.value.replace(/[^a-zA-Z0-9\s]/g,'');"></textarea><br>
         <input type="submit" value="확인해보기" onclick="count()">
@@ -15,60 +16,58 @@
 
     <script>
         function count() {
-            let alpha = document.getElementById("alpha").value; // 입력한 값 alpha 변수에 저장
-            let splitedAlpha = alpha.split('');
-            let alphaObj = {};
-            let alphaCount = [];
-            document.write("<table border = 1>");
-            for(j = 'a'.charCodeAt(0); j <= 'z'.charCodeAt(0); j++) {
-                let number_lowerCase = 0;
-                for(let i = 0; i < splitedAlpha.length; i++) {
-                    if (splitedAlpha[i] == String.fromCharCode(j)) {
-                        number_lowerCase++;
-                    } 
-                }
-                alphaObj = {name: String.fromCharCode(j), number: number_lowerCase};
-                alphaCount.push(alphaObj);
-                document.write("<tr> <td>" + alphaObj.name + "</td> <td>" + alphaObj.number + "개 </td> </tr>");
-
-            }
-            document.write("</table>");
+            var alpha = document.getElementById("alpha").value;
+            var splitedAlpha = alpha.split('');
+            var alphaObj = {};
             
-            document.write("<table border = 1>");
-            for(j = 'A'.charCodeAt(0); j <= 'Z'.charCodeAt(0); j++) {
-                let number_upperCase = 0;
-                for(let i = 0; i < splitedAlpha.length; i++) {
-                    if (splitedAlpha[i] == String.fromCharCode(j)) {
+            // a ~ z 테이블
+            document.write('<table border="1">');
+            for (i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++) {
+                var number_lowerCase = 0;
+                for (j = 0; j < splitedAlpha.length; j++) {
+                    if (splitedAlpha[j] == String.fromCharCode(i)) {
+                        number_lowerCase++;
+                    }
+                }
+                alphaObj = {name: String.fromCharCode(i), number: number_lowerCase};
+                document.write('<tr><td>' + alphaObj.name + '</td><td>' + alphaObj.number + '개 </td></tr>');
+            }
+            document.write('</table>');
+            
+            //  A ~ Z 테이블
+            document.write('<table border = "1">');
+            for (i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++) {
+                var number_upperCase = 0;
+                for (j = 0; j < splitedAlpha.length; j++) {
+                    if (splitedAlpha[j] == String.fromCharCode(i)) {
                         number_upperCase++;
-                    } 
-
+                    }
                 }
-                alphaObj = {name: String.fromCharCode(j), number: number_upperCase};
-                alphaCount.push(alphaObj);
-                document.write("<tr> <td>" + alphaObj.name + "</td> <td>" + alphaObj.number + "개 </td> </tr>");
+                alphaObj = {name: String.fromCharCode(i), number: number_upperCase};
+                document.write('<tr><td>' + alphaObj.name + '</td><td>' + alphaObj.number + '개 </td></tr>');
             }
-            document.write("</table>");
-
-            document.write("<table border = 1>");
-            for(j = '0'.charCodeAt(0); j <= '9'.charCodeAt(0); j++) {
-                let number_number = 0;
-                for(let i = 0; i < splitedAlpha.length; i++) {
-                    if (splitedAlpha[i] == String.fromCharCode(j)) {
+            document.write('</table>');
+            
+            // 0 ~ 9 테이블
+            document.write('<table border = "1">');
+            for (i = '0'.charCodeAt(0); i <= '9'.charCodeAt(0); i++) {
+                var number_number = 0;
+                for (j = 0; j < splitedAlpha.length; j++) {
+                    if (splitedAlpha[j] == String.fromCharCode(i)) {
                         number_number++;
-                    } 
-
+                    }
                 }
-                alphaObj = {name: String.fromCharCode(j), number: number_number};
-                alphaCount.push(alphaObj);
-                document.write("<tr> <td>" + alphaObj.name + "</td> <td>" + alphaObj.number + "개 </td> </tr>");
+                alphaObj = {name: String.fromCharCode(i), number: number_number};
+                document.write('<tr><td>' + alphaObj.name + '</td><td>' + alphaObj.number + '개 </td></tr>');
             }
-            document.write("</table>");
+            document.write('</table>');
             
         }
     </script>
 </body>
 
 <!--
+    전체 문자 빈도수 측정 프로그램
     *수정할 내용*
     1.  total Result
         - a-z, A-Z, 0-9 로 테이블을 나누어서 각 문자의 개수가 몇개인지 카운트 (o)
