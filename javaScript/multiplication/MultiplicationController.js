@@ -9,7 +9,7 @@ MultiplicationController.getTable = function(startRowNumber, endRowNumber, endCo
     var endRowNumber = Number(document.getElementById("endRowNumber").value);
     var endColumNumber = Number(document.getElementById("endColumNumber").value);
     
-    MultiplicationFactory.createMultiplyTable(startRowNumber,endRowNumber, startColumNumber, endColumNumber);
+    MultiplicationFactory.createMultiplicationTable(startRowNumber,endRowNumber, startColumNumber, endColumNumber);
     if (startRowNumber > endRowNumber) {
         alert("첫 번째 단이 마지막 단보다 더 작아야 합니다.");
         history.go(0);
