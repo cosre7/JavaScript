@@ -9,70 +9,78 @@
 <body>
     <form>
         <label for="alpha">문자 카운터(Top10)</label><br>
-        <textarea id="alpha" placeholder="영어와 숫자만 입력가능합니다." rows="4" cols = "50" onKeyup = "this.value = this.value.replace(/[^a-zA-Z0-9\s]/g,'');"></textarea><br>
-        <input type="submit" value="확인해보기" onclick="count()">
+        <textarea id="alpha" placeholder="영어와 숫자만 입력가능합니다." rows="4" cols="50" onKeyup="this.value = this.value.replace(/[^a-zA-Z0-9\s]/g,'');"></textarea><br>
+        <input type="submit" value="확인해보기" onclick="countFrequency()" />
     </form>
 
     <script>
-        function count() {
-            let alpha = document.getElementById("alpha").value; // 입력한 값 alpha 변수에 저장
-            let splitedAlpha = alpha.split('');
-            let alphaObj = {};
-            let alphaCount = [];
-            for(j = 'a'.charCodeAt(0); j <= 'z'.charCodeAt(0); j++) {
-                let number_lowerCase = 0;
-                let number_upperCase = 0;
-                for(let i = 0; i < splitedAlpha.length; i++) {
-                    if (splitedAlpha[i] == String.fromCharCode(j)) {
+        function countFrequency() {
+            var alpha = document.getElementById("alpha").value;
+            var splitedAlpha = alpha.split('');
+            var alphaObj = {};
+            var alphaCount = [];
+            
+            // a ~ z 문자 카운트
+            for (i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++) {
+                var number_lowerCase = 0;
+                
+                for (j = 0; j < splitedAlpha.length; j++) {
+                    if (splitedAlpha[j] == String.fromCharCode(i)) {
                         number_lowerCase++;
                     }
                 }
-                alphaObj = {name: String.fromCharCode(j), number: number_lowerCase};
-
+                alphaObj = {name: String.fromCharCode(i), number: number_lowerCase};
                 alphaCount.push([alphaObj.name, alphaObj.number]);
                 alphaCount.sort(function(a,b) {
                     return b[1] - a[1];
                 });
-            }
-
-            for(j = 'A'.charCodeAt(0); j <= 'Z'.charCodeAt(0); j++) {
-                let number_upperCase = 0;
-                for(let i = 0; i < splitedAlpha.length; i++) {
-                    if (splitedAlpha[i] == String.fromCharCode(j)) {
-                        number_upperCase++;
-                    } 
-                }
-                alphaObj = {name: String.fromCharCode(j), number: number_upperCase};
-                alphaCount.push([alphaObj.name, alphaObj.number]);
-                alphaCount.sort(function(a,b) {
-                    return b[1] - a[1];
-                });
-
             }
             
-            for(j = '0'.charCodeAt(0); j <= '9'.charCodeAt(0); j++) {
-                let number_number = 0;
-                for(let i = 0; i < splitedAlpha.length; i++) {
-                    if (splitedAlpha[i] == String.fromCharCode(j)) {
-                        number_number++;
-                    } 
+            // A ~ Z 문자 카운트
+            for (i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++) {
+                var number_upperCase = 0;
+                
+                for (j = 0; j < splitedAlpha.length; j++) {
+                    if (splitedAlpha[j] == String.fromCharCode(i)) {
+                        number_upperCase++;
+                    }
                 }
-                alphaObj = {name: String.fromCharCode(j), number: number_number};
+                alphaObj = {name: String.fromCharCode(i), number: number_upperCase};
                 alphaCount.push([alphaObj.name, alphaObj.number]);
                 alphaCount.sort(function(a,b) {
                     return b[1] - a[1];
                 });
             }
-            document.write("<table border = 1>");
-            for(i = 0; i < 10; i++) {
-                document.write("<tr> <td>" + (i+1) + "위 </td> <td>" + alphaCount[i].join("</td><td>") + "</td> </tr>");
+            
+            // 0 ~ 9 문자 카운트
+            for (i = '0'.charCodeAt(0); i <= '9'.charCodeAt(0); i++) {
+                var number_number = 0;
+                
+                for (j = 0; j < splitedAlpha.length; j++) {
+                    if (splitedAlpha[j] == String.fromCharCode(i)) {
+                        number_number++;
+                    }
+                }
+                alphaObj = {name: String.fromCharCode(i), number: number_number};
+                alphaCount.push([alphaObj.name, alphaObj.number]);
+                alphaCount.sort(function(a,b) {
+                    return b[1] - a[1];
+                });
             }
-            document.write("</table>")
+            
+            // 출력하기
+            document.write('<table border="1">');
+            for (i = 0; i < 10; i++) {
+                console.log(alphaCount);
+                document.write('<tr><td>' + (i+1) + '위 </td><td>' + alphaCount[i].join('</td><td>') + '개 </td></tr>');
+            }
+            document.write('</table>');
         }
     </script>
 </body>
 
 <!--
+    1위 ~ 10위까지 문자 빈도수 측정 프로그램
     *수정할 내용*
     1.  total Result
         - a-z, A-Z, 0-9 로 테이블을 나누어서 각 문자의 개수가 몇개인지 카운트 (o)
